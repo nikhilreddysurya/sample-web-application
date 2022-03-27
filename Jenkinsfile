@@ -8,7 +8,7 @@ pipeline{
                   steps{
                       script{
 			      withSonarQubeEnv('jenkins-project1-sonar') { 
-			     sh "mvn clean verify sonar:sonar -Dsonar.projectKey=test-code"
+			     sh "mvn clean verify sonar:sonar"
                        	     	}
 			      timeout(time: 1, unit: 'HOURS') {
 			      def qg = waitForQualityGate()
