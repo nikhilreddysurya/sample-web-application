@@ -1,11 +1,6 @@
 pipeline{
 
-      agent {
-                any {
-                image 'maven:3-openjdk-11'
-
-                }
-            }
+      agent any
         
         stages{
 
@@ -13,7 +8,7 @@ pipeline{
                   steps{
                       script{
 			      withSonarQubeEnv('jenkins-project1-sonar') { 
-			      sh "mvn clean sonar:sonar"
+			     sh "mvn clean verify sonar:sonar -Dsonar.projectKey=test-code"
                        	     	}
 			      timeout(time: 1, unit: 'HOURS') {
 			      def qg = waitForQualityGate()
